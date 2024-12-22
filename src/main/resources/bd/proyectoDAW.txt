@@ -1,0 +1,97 @@
+
+drop database proyectoDAW;
+CREATE DATABASE  IF NOT EXISTS `proyectoDAW`;
+
+USE `proyectoDAW`;
+
+/*Correr el programa para ejecutar las tablas y verficicar*/
+
+INSERT INTO `marca` VALUES 
+(1,'Audi'),
+(2,'Suzuki'),
+(3,'Haval'),
+(4,'Great Wall'),
+(5,'Honda'),
+(6,'Mazda'),
+(7,'Changan'),
+(8,'Mercedes-Benz');
+
+INSERT INTO `tipoempleado` VALUES 
+(1,'administrador'),
+(2,'vendedor');
+
+
+INSERT INTO `cliente` (id_cliente, dni, nombres, apellidos, direccion, correo, telefono) VALUES
+(1, '11223344', 'Anthony Sebastian', 'Huaringa Esteban', 'Cieneguilla', 'i202115589@cibertec.edu.com', 994433222),
+(2, '22334455', 'Maria Luisa', 'Ramirez Flores', 'San Isidro', 'maria@gmail.com', 993322111),
+(3, '33445566', 'Carlos Alberto', 'Torres Garcia', 'Miraflores', 'carlos@gmail.com', 992211000),
+(4, '44556677', 'Ana Patricia', 'Lopez Martinez', 'Surco', 'ana@gmail.com', 991100999),
+(5, '55667788', 'Luis Enrique', 'Diaz Chavez', 'Barranco', 'luis@gmail.com', 990099888),
+(6, '66778899', 'Jorge Andres', 'Vargas Salazar', 'Chorrillos', 'jorge@gmail.com', 989988777),
+(7, '77889900', 'Sofia Alejandra', 'Gomez Rojas', 'La Molina', 'sofia@gmail.com', 988877666),
+(8, '88990011', 'Miguel Angel', 'Morales Paredes', 'Lince', 'miguel@gmail.com', 987766555),
+(9, '99001122', 'Paula Isabel', 'Fernandez Silva', 'Magdalena', 'paula@gmail.com', 986655444),
+(10, '10012233', 'Ricardo Javier', 'Ortiz Castro', 'Pueblo Libre', 'ricardo@gmail.com', 985544333);
+
+
+INSERT INTO `empleado` (id_empleado, dni, nombres, apellidos, telefono, id_tipo, user, clave, img_empleado) VALUES
+(1, '75467562', 'Tamara', 'Sleizer', '967867870', 1, 'tam01', 'tam01', 'C:\\Users\\EDUARDO\\Documents\\workspace-spring-tool-suite-4-4.18.0.RELEASE\\ProyectoWebV2\\src\\main\\resources\\static\\imgs\\usuarios\\1.png'),
+(2, '65893412', 'Juan Carlos', 'Perez Vargas', '965432178', 1, 'juan02', 'juan02', 'C:\\Users\\EDUARDO\\Documents\\workspace-spring-tool-suite-4-4.18.0.RELEASE\\ProyectoWebV2\\src\\main\\resources\\static\\imgs\\usuarios\\2.png'),
+(3, '89451237', 'Ana Luisa', 'Ramirez Torres', '978321456', 2, 'ana03', 'ana03', 'C:\\Users\\EDUARDO\\Documents\\workspace-spring-tool-suite-4-4.18.0.RELEASE\\ProyectoWebV2\\src\\main\\resources\\static\\imgs\\usuarios\\3.png'),
+(4, '74561234', 'María Fernanda', 'Lopez Castillo', '962345678', 2, 'maria04', 'maria04', 'C:\\Users\\EDUARDO\\Documents\\workspace-spring-tool-suite-4-4.18.0.RELEASE\\ProyectoWebV2\\src\\main\\resources\\static\\imgs\\usuarios\\4.png'),
+(5, '89674523', 'Claudia Isabel', 'Rojas Silva', '964523198', 2, 'claudia05', 'claudia05', 'C:\\Users\\EDUARDO\\Documents\\workspace-spring-tool-suite-4-4.18.0.RELEASE\\ProyectoWebV2\\src\\main\\resources\\static\\imgs\\usuarios\\5.png'),
+(6, '52367489', 'Patricia Elena', 'Mendoza García', '961234789', 3, 'patricia06', 'patricia06', 'C:\\Users\\EDUARDO\\Documents\\workspace-spring-tool-suite-4-4.18.0.RELEASE\\ProyectoWebV2\\src\\main\\resources\\static\\imgs\\usuarios\\6.png'),
+(7, '47859632', 'Ricardo Javier', 'Ortiz Palacios', '976543219', 3, 'ricardo07', 'ricardo07', 'C:\\Users\\EDUARDO\\Documents\\workspace-spring-tool-suite-4-4.18.0.RELEASE\\ProyectoWebV2\\src\\main\\resources\\static\\imgs\\usuarios\\7.png'),
+(8, '65987412', 'Carmen Alejandra', 'Fernández León', '963852741', 2, 'carmen08', 'carmen08', 'C:\\Users\\EDUARDO\\Documents\\workspace-spring-tool-suite-4-4.18.0.RELEASE\\ProyectoWebV2\\src\\main\\resources\\static\\imgs\\usuarios\\8.png'),
+(9, '78694123', 'Gabriela María', 'Torres Sánchez', '962147853', 2, 'gabriela09', 'gabriela09', 'C:\\Users\\EDUARDO\\Documents\\workspace-spring-tool-suite-4-4.18.0.RELEASE\\ProyectoWebV2\\src\\main\\resources\\static\\imgs\\usuarios\\9.png'),
+(10, '41236587', 'Luis Eduardo', 'Guzmán Romero', '964875123', 3, 'luis10', 'luis10', 'C:\\Users\\EDUARDO\\Documents\\workspace-spring-tool-suite-4-4.18.0.RELEASE\\ProyectoWebV2\\src\\main\\resources\\static\\imgs\\usuarios\\10.png');
+
+
+INSERT INTO `carro` (id_carro,descripcion,id_marca,origen,combustible,precio,stock) VALUES 
+(1,'AUDI A1 SPORTBACK',1,'Alemania','Gasolina',26610.8,3999),
+(2,'AUDI A3 SEDAN',1,'Alemania','Gasolina',25210,3000),
+(3,'AUDI E-TRON',1,'Alemania','Gasolina',27110.8,4000),
+(4,'SUZUKI ALL NEW CELERIO',2,'Japon','Gasolina',12490,3999),
+(5,'SUZUKI DZIRE',2,'Japon','Gasolina',13490,4000),
+(6,'SUZUKI NUEVO SWIFT',2,'Japon','Gasolina',14990,4000),
+(7,'HAVAL NEW HAVAL JOLION',3,'Rusia','Gasolina',19290,4000),
+(8,'HAVAL ALL NEW HAVAL DARGO',3,'Rusia','Gasolina',28990,4000),
+(9,'HAVAL ALL NEW H6',3,'Rusia','Gasolina',24590,4000),
+(10,'GREAT WALL WINGLE 5',4,'China','Gasolina',13690,4000),
+(11,'GREAT WALL POER',4,'China','Gasolina',20590,4000),
+(12,'GREAT WALL WINGLE 7',4,'China','Gasolina',19090,4000),
+(13,'MAZDA NEW MAZDA2 SEDÁN',6,'Japon','Gasolina',17490,4000),
+(14,'MAZDA MAZDA CX-3',6,'Japon','Gasolina',17990,4000),
+(15,'MAZDA MAZDA CX-9',6,'Japon','Gasolina',39990,4000),(16,'CHANGAN NEW VAN',7,'Chino','Gasolina',9990,4000),(17,'CHANGAN HONOR S',7,'Chino','Gasolina',12990,4000),(18,'CHANGAN UNI-T',7,'Chino','Gasolina',25490,4000);
+
+INSERT INTO `ventas` VALUES 
+(1,'00000001','2022-11-27',26610.8,1,1),
+(2,'00000002','2022-11-27',12490,2,1);
+
+INSERT INTO `detalle_venta` VALUES 
+(1,1,'Descripcion 1',26610.8,2660,1,1),
+(2,1,'Descripcion 2',26610.8,26610.8,2,2);
+
+
+select * from cliente;
+select * from marca;
+select * from carro;
+select * from empleado;
+select * from tipoempleado;
+select * from ventas;
+
+select * from detalle_venta;
+select * from ventas;
+
+SELECT c.nombres AS "CLIENTE",  em.Nombres AS "EMPLEADO", ca.descripcion AS "CARRO", d.Cantidad as "CANTIDAD",
+v.numero_serie AS "NUMERO_SERIE", v.fecha_ventas AS "FECHA_EMISION", v.Monto AS "MONTO"
+FROM ventas AS v
+JOIN cliente AS c
+ON v.id_cliente=c.id_cliente
+JOIN empleado as em
+ON em.id_empleado=v.id_empleado
+LEFT JOIN detalle_venta AS d
+ON d.id_venta=v.id_venta
+LEFT JOIN carro AS ca
+ON ca.id_carro=d.id_carro 
+GROUP BY c.nombres,em.Nombres,ca.descripcion,d.Cantidad,v.numero_serie,v.fecha_ventas,v.Monto

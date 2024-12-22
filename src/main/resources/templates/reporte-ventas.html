@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <style type="text/css">
+        @media print {
+            .parte1, .btn, .accion{
+                display:none;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1 style="text-align: center; font-family: Courier New, monospace; font-size: 50px;">Reporte de Ventas</h1>
+<br>
+<div style="font-family: Courier New, monospace;">
+    <form action="" id="frmReporte" name="frmReporte" method="post" th:object="${ventas}" enctype="multipart/form-data" class="parte1">
+        <div style="justify-content: center;margin: 0;" class="form-row ">
+            <label style="margin-top: 12px;" class="mr-sm-2" >Fecha Inicio:</label>
+            <div class="col-sm-2 my-1">
+                <input type="date" id="fechaInicio" name="fechaInicio" pattern="yyyy-MM-dd" class="form-control">
+            </div>
+            <label style="margin-top: 12px; margin-left: 20px;" class="mr-sm-2" >Fecha Fin:</label>
+            <div class="col-sm-2 my-1">
+                <input type="date" id="fechaFin" name="fechaFin" pattern="yyyy-MM-dd" class="form-control">
+            </div>
+
+            <div style="margin-top: 5px;margin-left: 20px; " >
+                <button type="submit" class="btn btn-primary " name="accion" value="Consultar" onclick="Consultar()">Consultar</button>
+                <button type="submit" class="btn btn-primary " name="accion" value="Descargar" onclick="GenerarPdf()">Descargar PDF</button>
+            </div>
+        </div>
+    </form>
+    <br>
+    <div  class="col ">
+
+        <table  class="table table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">CLIENTE</th>
+                <th scope="col">EMPLEADO</th>
+                <th scope="col">CARRO</th>
+                <th scope="col">CANTIDAD</th>
+                <th scope="col">NUM.SERIE</th>
+                <th scope="col">FECHA EMISIÓN</th>
+                <th scope="col">MONTO</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="venta : ${ventas}">
+                    <th scope="row"></th>
+                    <td th:text="${venta.cliente.nom}"></td>
+                    <td th:text="${venta.empleado.nom}"></td>
+                    <td>
+                        <table>
+                            <tbody>
+                            <tr th:each="detalle : ${detallesPorVenta[venta.id]}">
+                                <td th:text="${detalle.carro.descripcion}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            <tbody>
+                            <tr th:each="detalle : ${detallesPorVenta[venta.id]}">
+                                <td th:text="${detalle.cantidad}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td th:text="${venta.numserie}"></td>
+                    <td th:text="${venta.fecha}"></td>
+                    <td th:text="${venta.monto}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    function Consultar() {
+        var action = "/reporte/ventas";
+        var FechInicio = document.getElementById("fechaInicio");
+        var FechFinal = document.getElementById("fechaFin");
+
+        if (FechInicio.value == null || FechInicio.value == "") {
+            alert('Ingresar una Fecha de Inicio');
+            return;
+        }
+
+
+        if (FechFinal.value == null || FechFinal.value == "") {
+            alert('Ingresar una Fecha Final');
+            return;
+        }
+
+        if (FechInicio.value != "" && FechFinal.value != "") {
+            var resultado = confirm('¿Seguro que desea Consultar?');
+            if (resultado) {
+                document.frmReporte.action = action
+                alert('Búsqueda exitosa');
+            }
+        }
+
+    }
+</script>
+<script type="text/javascript">
+    function GenerarPdf() {
+        var action = "/reporte/fechas";
+        var FechInicio = document.getElementById("fechaInicio");
+        var FechFinal = document.getElementById("fechaFin");
+
+        if (FechInicio.value != "" && FechFinal.value != "") {
+            var resultado = confirm('¿Seguro que desea Generar el pdf?');
+            if (resultado) {
+                document.frmReporte.action = action
+                alert('Pdf Generado con éxito');
+            }
+        }
+
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous">
+
+</script>
+<script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous">
+
+</script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous">
+
+</script>
+</body>
+</html>

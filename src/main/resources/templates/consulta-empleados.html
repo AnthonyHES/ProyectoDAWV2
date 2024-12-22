@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+</head>
+<body>
+<div style="font-family: Courier New, monospace;" class="container">
+
+    <main>
+
+        <section style="width: 75%; float: left;">
+            <h1>Consulta de Empleados</h1>
+            <table class="table" id="myTable">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Dni</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Foto</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="e : ${lstEmpleados}">
+                        <th scope="row" th:text="${e.idEmpleado}"></th>
+                        <td th:text="${e.dni}"></td>
+                        <td th:text="${e.nom}"></td>
+                        <td th:text="${e.ape}"></td>
+                        <td th:text="${e.tel}"></td>
+                        <td th:text="${e.objTipo.descrip}"></td>
+                        <td><img th:src="@{'/imgs/usuarios/' + ${e.idEmpleado} + '.png'}" alt="70"
+                                 width="60"></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </section>
+    </main>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+<script
+        src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            "language" : {
+                "lengthMenu" : "Mostrando _MENU_ ",
+                "zeroRecords" : "No hay registros a mostrar",
+                "info" : "PÃ¡g _PAGE_ de _PAGES_",
+                "infoEmpty" : "No records available",
+                "infoFiltered" : "(filtered from _MAX_ total records)"
+            }
+        });
+    });
+</script>
+</html>
